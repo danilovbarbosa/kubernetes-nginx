@@ -1,0 +1,8 @@
+version: '3.9'
+
+services: 
+    nginx:
+        image: nginx:1.21.0-alpine
+        container_name: nginx
+        ports: 
+            - "8000:80"
