@@ -12,3 +12,25 @@ services:
         working_dir: /var/www/html
         volumes:
             - ./:/var/www/html
+        networks: 
+            - prod
+
+    app:
+        build: 
+            dockerfile: Dockerfile
+            context: .
+        image: danilocostaolist/ts-test-nginx
+        container_name: app
+        ports: 
+            - "8000:8000"
+        command: bash -f ./scripts/run.sh
+        volumes: 
+            - .:/var/www
+        working_dir: /var/www
+        restart: always
+        networks: 
+            - prod            
+
+networks: 
+    prod:
+        driver: bridge
