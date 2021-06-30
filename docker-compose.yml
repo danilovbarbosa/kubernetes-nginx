@@ -2,9 +2,13 @@ version: '3.9'
 
 services: 
     nginx:
-        image: nginx:1.21.0-alpine
+        build: 
+            dockerfile: Dockerfile
+            context: ./nginx
         container_name: nginx
+        image: danilocostaolist/nginx
         ports: 
-            - "8000:80"
+            - "8080:80"
+        working_dir: /var/www/html
         volumes:
             - ./:/var/www/html
