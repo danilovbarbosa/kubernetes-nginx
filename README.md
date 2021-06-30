@@ -2,7 +2,15 @@
 
 Projeto kubernetes para servidor nginx
 
-## Configurações
+## Execução
+
+- Docker-compose:
+
+```sh
+docker-compose up
+```
+
+## Comandos para possíveis configurações
 
 - Adicione o bash e o nano:
 
