@@ -9,9 +9,10 @@ services:
         image: danilocostaolist/nginx
         ports: 
             - "8080:80"
-        working_dir: /var/www/html
+        working_dir: /etc/nginx/
         volumes:
-            - ./:/var/www/html
+            - ./nginx:/etc/nginx/conf.d
+            - static-content:/var/www/html
         networks: 
             - prod
 
@@ -26,6 +27,7 @@ services:
         command: bash -f ./scripts/run.sh
         volumes: 
             - .:/var/www
+            - static-content:/var/www/static/
         working_dir: /var/www
         restart: always
         networks: 
@@ -34,3 +36,6 @@ services:
 networks: 
     prod:
         driver: bridge
+
+volumes:
+    static-content:
