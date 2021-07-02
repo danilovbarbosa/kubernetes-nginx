@@ -12,9 +12,11 @@ services:
         working_dir: /etc/nginx/
         volumes:
             - ./nginx:/etc/nginx/conf.d
-            - static-content:/var/www/html
+            - ./static:/var/www/static/
         networks: 
             - prod
+        depends_on:
+            - app
 
     app:
         build: 
@@ -27,7 +29,6 @@ services:
         command: bash -f ./scripts/run.sh
         volumes: 
             - .:/var/www
-            - static-content:/var/www/static/
         working_dir: /var/www
         restart: always
         networks: 
@@ -36,6 +37,3 @@ services:
 networks: 
     prod:
         driver: bridge
-
-volumes:
-    static-content:
